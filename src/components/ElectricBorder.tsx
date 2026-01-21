@@ -1,4 +1,5 @@
-import React, { CSSProperties, ReactNode, useCallback, useEffect, useRef } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 
 function hexToRgba(hex: string, alpha: number = 1): string {
   if (!hex) return `rgba(0,0,0,${alpha})`;
