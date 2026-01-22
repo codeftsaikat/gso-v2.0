@@ -16,6 +16,9 @@ export default function Gallery() {
                     maxVerticalRotationDeg={2}
                     segments={40}
                     dragDampening={0}
+                    autoRotate={true}
+                    autoRotateDirection="left"
+                    autoRotateSpeed={5}
                     grayscale={false}
                 />
             </div>

@@ -15,13 +15,13 @@ const SectionHeader = (props: Props) => {
                 </div>
             </div>
 
-            <div className=" w-full font-bold irvin-header  mx-auto flex! items-center! justify-center! text-center!">
+            <div className="px-2 w-full font-bold irvin-header  mx-auto flex! items-center! justify-center! text-center!">
                 <BlurText
                     text={props.title}
                     delay={200}
                     animateBy="words"
                     direction="top"
-                    className="text-3xl mb-8 text-center!"
+                    className="text-2xl md:text-3xl mb-8 text-center!"
                 />
 
             </div>

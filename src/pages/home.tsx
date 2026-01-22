@@ -22,6 +22,7 @@ export default function HomePage() {
       <PartnersSection />
       <Gallery />
       <MediaCoverageSection />
+      {/* <NewsSection /> */}
       <Footer />
     </div>
   );

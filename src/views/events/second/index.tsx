@@ -1,8 +1,8 @@
-"use client";
 
 import { useState } from "react";
 
 import SectionHeader from "@/components/common/section-header";
+import { Button } from "@/components/ui/button";
 import EventCard from "./event-card";
 import EventStats from "./event-stats";
 import EventTabs from "./event-tab";
@@ -17,6 +17,9 @@ const EventsSection = () => {
         setActiveTab(value as ActiveTab);
     };
 
+    const [showAll, setShowAll] = useState(false)
+    const currentEvents = eventsData[activeTab];
+    const visibleEvents = showAll ? currentEvents : currentEvents.slice(0, 2)
     return (
         <section
             id="second"
@@ -43,8 +46,8 @@ const EventsSection = () => {
 
 
                 {/* Events Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                    {eventsData[activeTab].map((event) => (
+                <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
+                    {visibleEvents.map((event) => (
                         <EventCard
                             key={event.id}
                             event={event}
@@ -52,6 +55,16 @@ const EventsSection = () => {
                         />
                     ))}
                 </div>
+
+                {/* 3. Keep your button logic as is */}
+                {currentEvents.length > 2 && (
+                    <div className="w-full flex justify-center my-18 irvin">
+                        <Button className="rounded-full font-bold text-xl py-6 px-10 bg-white text-black hover:bg-gray-100 border border-gray-300 cursor-pointer"
+                            size={"lg"} onClick={() => setShowAll((prev) => !prev)}>
+                            {showAll ? "Show Less" : "View All"}
+                        </Button>
+                    </div>
+                )}
 
                 {/* Event Statistics */}
                 <div className="mb-12">

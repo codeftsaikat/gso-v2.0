@@ -1,14 +1,28 @@
+import Carousel from "@/components/Carousel";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin, Users } from "lucide-react";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import type { EventData } from "./types";
+
+import { default as ongoing_01, default as ongoing_02, default as ongoing_03 } from "@/assets/activities/ongoing_01.jpeg";
+
+
+
+
 
 interface EventCardProps {
     event: EventData;
     isFeatured?: boolean;
 }
 
-const EventCard = ({ event, isFeatured = false }: EventCardProps) => {
+const images = [
+    { src: ongoing_01 },
+    { src: ongoing_02 },
+    { src: ongoing_03 },
+]
+
+
+
+const EventCard = ({ event }: EventCardProps) => {
 
 
     const getStatusColor = (status: EventData['status']): string => {
@@ -20,19 +34,10 @@ const EventCard = ({ event, isFeatured = false }: EventCardProps) => {
         }
     };
 
-    // const getStatusIcon = (status: EventData['status']): string => {
-    //     switch (status) {
-    //         case 'ongoing': return '⏳';
-    //         case 'upcoming': return '📅';
-    //         case 'completed': return '✅';
-    //         default: return '📌';
-    //     }
-    // };
-
     return (
-        <Card className={`overflow-hidden transition-all duration-300 hover:shadow-lg ${isFeatured ? 'lg:col-span-2' : ''}`}>
+        <Card className={`overflow-hidden transition-all duration-300 hover:shadow-lg  `}>
             {/* Card Header with Status */}
-            <CardHeader className="pb-4">
+            <CardHeader className="pb-0">
                 <div className="space-y-1">
                     <div className="flex items-center gap-2">
                         <Badge variant="outline" className={getStatusColor(event.status)}>
@@ -44,31 +49,90 @@ const EventCard = ({ event, isFeatured = false }: EventCardProps) => {
                 </div>
             </CardHeader>
 
-            {/* Card Content */}
-            <CardContent className="pb-4">
-                {/* Event Details */}
-                <div className="space-y-3 mb-4">
+            <div className="flex justify-center items-center">
+                {event.status === "ongoing" && (
+                    <div>
+                        <div className="hidden md:block">
+                            <Carousel
+                                baseWidth={600}
+                                autoplay
+                                autoplayDelay={3000}
+                                pauseOnHover={true}
+                                loop={true}
+                                round={false}
+                                items={images}
 
-                    <div className="flex items-center text-sm text-muted-foreground">
-                        <MapPin className="h-4 w-4 mr-2 text-primary" />
-                        <span>{event.location}</span>
+                            />
+                        </div>
+                        <div className="md:hidden">
+                            <Carousel
+                                baseWidth={350}
+                                autoplay
+                                autoplayDelay={3000}
+                                pauseOnHover={true}
+                                loop={true}
+                                round={false}
+                                items={images}
+
+                            />
+                        </div>
                     </div>
+                )}
 
-                    <div className="flex items-center text-sm text-muted-foreground">
-                        <Users className="h-4 w-4 mr-2 text-primary" />
-                        <span>{event.participants} participants</span>
+                {event.status === "completed" && (<div>
+                    <div className="hidden md:block">
+                        <Carousel
+                            baseWidth={600}
+                            autoplay
+                            autoplayDelay={3000}
+                            pauseOnHover={true}
+                            loop={true}
+                            round={false}
+                            items={images}
+
+                        />
                     </div>
-                </div>
+                    <div className="md:hidden">
+                        <Carousel
+                            baseWidth={350}
+                            autoplay
+                            autoplayDelay={3000}
+                            pauseOnHover={true}
+                            loop={true}
+                            round={false}
+                            items={images}
 
-                {/* Description */}
-                <p className="text-sm text-gray-600 mb-4 line-clamp-3 body-italic">
-                    {event.description}
-                </p>
+                        />
+                    </div>
+                </div>)}
 
-            </CardContent>
+                {event.status === "upcoming" && (<div>
+                    <div className="hidden md:block">
+                        <Carousel
+                            baseWidth={600}
+                            autoplay
+                            autoplayDelay={3000}
+                            pauseOnHover={true}
+                            loop={true}
+                            round={false}
+                            items={images}
 
-            {/* Card Footer with Actions */}
+                        />
+                    </div>
+                    <div className="md:hidden">
+                        <Carousel
+                            baseWidth={350}
+                            autoplay
+                            autoplayDelay={3000}
+                            pauseOnHover={true}
+                            loop={true}
+                            round={false}
+                            items={images}
 
+                        />
+                    </div>
+                </div>)}
+            </div>
         </Card>
     );
 };

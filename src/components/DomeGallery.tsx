@@ -21,6 +21,10 @@ type DomeGalleryProps = {
   imageBorderRadius?: string;
   openedImageBorderRadius?: string;
   grayscale?: boolean;
+  autoRotate?: boolean; // New prop: enable/disable auto-rotation
+  autoRotateSpeed?: number; // New prop: rotation speed (degrees per second)
+  autoRotateDelay?: number; // New prop: delay before starting auto-rotation on hover
+  autoRotateDirection?: 'left' | 'right'; // New prop: rotation direction
 };
 
 type ItemDef = {
@@ -67,7 +71,11 @@ const DEFAULTS = {
   maxVerticalRotationDeg: 5,
   dragSensitivity: 20,
   enlargeTransitionMs: 300,
-  segments: 35
+  segments: 35,
+  autoRotate: true,
+  autoRotateSpeed: 15, // degrees per second
+  autoRotateDelay: 1000, // milliseconds
+  autoRotateDirection: 'right' as const
 };
 
 const clamp = (v: number, min: number, max: number) => Math.min(Math.max(v, min), max);
@@ -155,7 +163,11 @@ export default function DomeGallery({
   openedImageHeight = '400px',
   imageBorderRadius = '30px',
   openedImageBorderRadius = '30px',
-  grayscale = true
+  grayscale = true,
+  autoRotate = DEFAULTS.autoRotate,
+  autoRotateSpeed = DEFAULTS.autoRotateSpeed,
+  autoRotateDelay = DEFAULTS.autoRotateDelay,
+  autoRotateDirection = DEFAULTS.autoRotateDirection
 }: DomeGalleryProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLDivElement>(null);
@@ -184,6 +196,13 @@ export default function DomeGallery({
   const openStartedAtRef = useRef(0);
   const lastDragEndAt = useRef(0);
 
+  // Auto-rotation state
+  const autoRotateRef = useRef(false);
+  const autoRotateRAF = useRef<number | null>(null);
+  const hoverRef = useRef(false);
+  const lastRotationTimeRef = useRef<number>(0);
+  const autoRotateDelayTimerRef = useRef<NodeJS.Timeout | null>(null);
+
   const scrollLockedRef = useRef(false);
   const lockScroll = useCallback(() => {
     if (scrollLockedRef.current) return;
@@ -207,6 +226,74 @@ export default function DomeGallery({
   };
 
   const lockedRadiusRef = useRef<number | null>(null);
+
+  // Auto-rotation functions
+  const startAutoRotation = useCallback(() => {
+    if (!autoRotate || focusedElRef.current || draggingRef.current) return;
+
+    if (autoRotateDelayTimerRef.current) {
+      clearTimeout(autoRotateDelayTimerRef.current);
+    }
+
+    autoRotateDelayTimerRef.current = setTimeout(() => {
+      autoRotateRef.current = true;
+      lastRotationTimeRef.current = performance.now();
+
+      const rotateStep = () => {
+        if (!autoRotateRef.current || focusedElRef.current || draggingRef.current) {
+          autoRotateRAF.current = null;
+          return;
+        }
+
+        const now = performance.now();
+        const deltaTime = (now - lastRotationTimeRef.current) / 1000; // Convert to seconds
+        lastRotationTimeRef.current = now;
+
+        // Calculate rotation amount based on speed and direction
+        const rotationAmount = autoRotateSpeed * deltaTime * (autoRotateDirection === 'left' ? -1 : 1);
+
+        // Only rotate on Y-axis (horizontal rotation)
+        const nextY = wrapAngleSigned(rotationRef.current.y + rotationAmount);
+
+        rotationRef.current = {
+          x: rotationRef.current.x,
+          y: nextY
+        };
+        applyTransform(rotationRef.current.x, nextY);
+
+        autoRotateRAF.current = requestAnimationFrame(rotateStep);
+      };
+
+      if (!autoRotateRAF.current) {
+        autoRotateRAF.current = requestAnimationFrame(rotateStep);
+      }
+    }, autoRotateDelay);
+  }, [autoRotate, autoRotateSpeed, autoRotateDelay, autoRotateDirection]);
+
+  const stopAutoRotation = useCallback(() => {
+    autoRotateRef.current = false;
+    if (autoRotateDelayTimerRef.current) {
+      clearTimeout(autoRotateDelayTimerRef.current);
+      autoRotateDelayTimerRef.current = null;
+    }
+    if (autoRotateRAF.current) {
+      cancelAnimationFrame(autoRotateRAF.current);
+      autoRotateRAF.current = null;
+    }
+  }, []);
+
+  // Handle hover events
+  const handleMouseEnter = useCallback(() => {
+    hoverRef.current = true;
+    if (autoRotate && !focusedElRef.current && !draggingRef.current) {
+      startAutoRotation();
+    }
+  }, [autoRotate, startAutoRotation]);
+
+  const handleMouseLeave = useCallback(() => {
+    hoverRef.current = false;
+    stopAutoRotation();
+  }, [stopAutoRotation]);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -294,6 +381,19 @@ export default function DomeGallery({
 
   useEffect(() => {
     applyTransform(rotationRef.current.x, rotationRef.current.y);
+
+    // Start auto-rotation on mount if enabled and no hover requirement
+    if (autoRotate) {
+      const timer = setTimeout(() => {
+        if (!hoverRef.current && !focusedElRef.current && !draggingRef.current) {
+          startAutoRotation();
+        }
+      }, autoRotateDelay);
+
+      return () => clearTimeout(timer);
+    }
+
+    return () => { };
   }, []);
 
   const stopInertia = useCallback(() => {
@@ -341,6 +441,7 @@ export default function DomeGallery({
       onDragStart: ({ event }) => {
         if (focusedElRef.current) return;
         stopInertia();
+        stopAutoRotation();
 
         const evt = event as PointerEvent;
         pointerTypeRef.current = (evt.pointerType as any) || 'mouse';
@@ -421,6 +522,11 @@ export default function DomeGallery({
           if (pointerTypeRef.current === 'touch') unlockScroll();
           if (movedRef.current) lastDragEndAt.current = performance.now();
           movedRef.current = false;
+
+          // Restart auto-rotation after drag ends (if hovered and auto-rotate is enabled)
+          if (hoverRef.current && autoRotate && !focusedElRef.current) {
+            startAutoRotation();
+          }
         }
       }
     },
@@ -452,6 +558,11 @@ export default function DomeGallery({
         focusedElRef.current = null;
         rootRef.current?.removeAttribute('data-enlarging');
         openingRef.current = false;
+
+        // Restart auto-rotation after closing (if hovered and auto-rotate is enabled)
+        if (hoverRef.current && autoRotate) {
+          startAutoRotation();
+        }
         return;
       }
 
@@ -542,6 +653,11 @@ export default function DomeGallery({
                 if (!draggingRef.current && rootRef.current?.getAttribute('data-enlarging') !== 'true') {
                   document.body.classList.remove('dg-scroll-lock');
                 }
+
+                // Restart auto-rotation after closing animation completes
+                if (hoverRef.current && autoRotate) {
+                  startAutoRotation();
+                }
               }, 300);
             });
           });
@@ -563,13 +679,15 @@ export default function DomeGallery({
       scrim.removeEventListener('click', close);
       window.removeEventListener('keydown', onKey);
     };
-  }, [enlargeTransitionMs, openedImageBorderRadius, grayscale]);
+  }, [enlargeTransitionMs, openedImageBorderRadius, grayscale, autoRotate, startAutoRotation]);
 
   const openItemFromElement = (el: HTMLElement) => {
     if (openingRef.current) return;
     openingRef.current = true;
     openStartedAtRef.current = performance.now();
     lockScroll();
+    stopAutoRotation();
+
     const parent = el.parentElement as HTMLElement;
     focusedElRef.current = el;
     el.setAttribute('data-focused', 'true');
@@ -601,6 +719,11 @@ export default function DomeGallery({
       focusedElRef.current = null;
       parent.removeChild(refDiv);
       unlockScroll();
+
+      // Restart auto-rotation if open fails
+      if (hoverRef.current && autoRotate) {
+        startAutoRotation();
+      }
       return;
     }
 
@@ -677,8 +800,12 @@ export default function DomeGallery({
   useEffect(() => {
     return () => {
       document.body.classList.remove('dg-scroll-lock');
+      stopAutoRotation();
+      if (autoRotateDelayTimerRef.current) {
+        clearTimeout(autoRotateDelayTimerRef.current);
+      }
     };
-  }, []);
+  }, [stopAutoRotation]);
 
   const cssStyles = `
     .sphere-root {
@@ -795,6 +922,8 @@ export default function DomeGallery({
             touchAction: 'none',
             WebkitUserSelect: 'none'
           }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <div className="stage">
             <div ref={sphereRef} className="sphere">
