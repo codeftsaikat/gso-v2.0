@@ -201,7 +201,7 @@ export default function DomeGallery({
   const autoRotateRAF = useRef<number | null>(null);
   const hoverRef = useRef(false);
   const lastRotationTimeRef = useRef<number>(0);
-  const autoRotateDelayTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const autoRotateDelayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const scrollLockedRef = useRef(false);
   const lockScroll = useCallback(() => {

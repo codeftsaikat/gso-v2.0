@@ -132,7 +132,7 @@ export function Navigation() {
     }
 
     return (
-        <div className="bg-white border py-2 px-4 rounded-full">
+        <div className="bg-white border border-gray-200 shadow-sm py-2 px-4 rounded-full">
             <NavigationMenu >
                 <NavigationMenuList className="flex-wrap">
 
