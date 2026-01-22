@@ -5,7 +5,7 @@ import SpotlightCard from "@/components/SpotlightCard";
 const MissionVisionImpact = () => {
 
     return (
-        <section className="py-16 md:py-24 text-black relative overflow-hidden bg-gradient-to-r from-zinc-50 to-zinc-50"
+        <section id="about" className="py-16 md:py-24 text-black relative overflow-hidden bg-gradient-to-r from-zinc-50 to-zinc-50"
         >
             <div className="absolute inset-0 bg-linear-to-t from-slate-900/10 to-transparent pointer-events-none" />
 

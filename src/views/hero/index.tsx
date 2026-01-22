@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
     return (
-        <header className="relative overflow-hidden bg-gray-900">
+        <header className="relative overflow-hidden bg-gray-900" id="home">
 
             <div className="absolute min-w-full">
                 <LightRays
@@ -26,7 +26,7 @@ const Hero = () => {
                 />
             </div>
 
-            <div className="pt-24 pb-40 lg:pt-26 lg:pb-26">
+            <div className="pt-10 md:pt-24 pb-18 md:pb-40 lg:pt-26 lg:pb-26">
                 <div className="absolute inset-0 overflow-hidden">
                     {/* Top-right premium glow */}
                     <div className="absolute -top-60 -right-60 w-96 h-96 bg-gradient-to-br from-amber-300/60 via-amber-200/30 to-transparent rounded-full blur-3xl shadow-2xl"></div>
@@ -36,10 +36,10 @@ const Hero = () => {
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900/5"></div>
                 </div>
 
-                {/* High-End Abstract Background */}
-                {/* <div className="absolute inset-0 z-0 opacity-30">
+
+                <div className="absolute inset-0 z-0 opacity-20">
                     <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-[#0B1120]/80 to-transparent"></div></div> */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-[#0B1120]/80 to-transparent"></div></div>
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -58,7 +58,13 @@ const Hero = () => {
                                 />
                             </div>
 
-                            <p className="text-lg md:text-xl mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light text-white">
+                            <div className="relative z-10 rounded-xl  border-3 backdrop-blur-lg shadow-2xl mb-10 md:hidden">
+                                <VideoPlayer
+                                    src="https://www.youtube.com/embed/CsGAVg0hDbk"
+                                />
+                            </div>
+
+                            <p className="text-lg md:text-xl mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light text-white text-center md:text-start">
                                 Join the world's most prestigious science competition for young innovators.
                                 Certified by global educational bodies.
                             </p>
@@ -77,26 +83,12 @@ const Hero = () => {
 
                                     </ElectricBorder>
                                 </Link>
-                                {/* <a href="https://sciencebaze.com/direct-reg/second-igso" className="px-8 py-4 rounded-md border border-slate-600 font-medium hover:bg-white/5 text-white  transition-all text-center">
-                                    Register Now - 100 BDT
-                                </a> */}
-
-                                <ElectricBorder
-                                    color="#fff2ff"
-                                    speed={1}
-                                    chaos={0}
-                                    style={{ borderRadius: 16 }}
-                                    className="text-white px-6 py-4 cursor-pointer hover:scale-110 duration-200 w-full text-center"
-                                >
-                                    View Past Winners
-                                </ElectricBorder>
-
 
                             </div>
 
                         </div>
 
-                        <div className=" relative z-10 rounded-xl  border-2 backdrop-blur-lg shadow-2xl">
+                        <div className="relative z-10 rounded-xl  border-3 backdrop-blur-lg shadow-2xl hidden md:block">
                             <VideoPlayer
                                 src="https://www.youtube.com/embed/CsGAVg0hDbk"
                             />

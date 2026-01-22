@@ -39,19 +39,25 @@ const EventTabs = ({ activeTab, onTabChange, eventCategories }: EventTabsProps) 
 
             {/* Tab Contents */}
             <div className="mt-8">
-                <TabsContent value="ongoing" className="mt-0">
-                    <div className="mb-6 text-center">
-                        <h3 className="irvin text-2xl! font-bold mb-2 ">Ongoing Events</h3>
-                        <p className="text-black">Active events you can participate in right now</p>
-                    </div>
-                </TabsContent>
 
-                <TabsContent value="past" className="mt-0">
-                    <div className="mb-6 text-center">
-                        <h3 className="text-2xl! font-bold mb-2 irvin">Completed Events</h3>
-                        <p className="text-black">Past events with photos, videos, and outcomes</p>
-                    </div>
-                </TabsContent>
+                <section id="second">
+                    <TabsContent value="ongoing" className="mt-0">
+                        <div className="mb-6 text-center">
+                            <h3 className="irvin text-2xl! font-bold mb-2 ">Ongoing Events</h3>
+                            <p className="text-black">Active events you can participate in right now</p>
+                        </div>
+                    </TabsContent>
+                </section>
+
+                <section id="first">
+                    <TabsContent value="past" className="mt-0">
+                        <div className="mb-6 text-center">
+                            <h3 className="text-2xl! font-bold mb-2 irvin">Completed Events</h3>
+                            <p className="text-black">Past events with photos, videos, and outcomes</p>
+                        </div>
+                    </TabsContent>
+                </section>
+
 
                 <TabsContent value="future" className="mt-0">
                     <div className="mb-6 text-center">
@@ -60,7 +66,7 @@ const EventTabs = ({ activeTab, onTabChange, eventCategories }: EventTabsProps) 
                     </div>
                 </TabsContent>
             </div>
-        </Tabs>
+        </Tabs >
     );
 };
 

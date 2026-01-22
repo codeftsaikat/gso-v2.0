@@ -1,8 +1,9 @@
 
-import { Menu, Microscope, Zap } from "lucide-react"
+import { Menu, Microscope, Zap } from "lucide-react";
+import { Link as ScrollLink } from 'react-scroll';
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -11,11 +12,10 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { useIsMobile } from "@/hooks/use-mobile"
-import { useState } from "react"
-import { Link } from "react-router-dom"
+} from "@/components/ui/navigation-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { useState } from "react";
 
 
 export function Navigation() {
@@ -25,75 +25,106 @@ export function Navigation() {
     if (isMobile) {
         return (
             <Sheet open={open} onOpenChange={setOpen}>
-                <SheetTrigger asChild>
+                <SheetTrigger className="border" asChild>
                     <Button variant="ghost" size="icon" className="md:hidden">
                         <Menu className="size-6" />
                     </Button>
                 </SheetTrigger>
-                <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-                    {/* <SheetHeader>
-                        <SheetTitle className="text-left text-primary">Menu</SheetTitle>
-                    </SheetHeader> */}
+                <SheetContent side="right" className="w-[300px] sm:w-[400px] py-10 px-6 border border-gray-700">
+                    <div className="flex flex-col gap-4 py-6 ">
 
-                    <div className="flex flex-col gap-4 py-6">
-                        <Link
-                            to="/"
+                        <ScrollLink
+                            to="home"
                             onClick={() => setOpen(false)}
-                            className="text-lg font-semibold hover:text-primary transition-colors"
+                            className="text-lg font-medium hover:text-primary transition-colors"
+                            smooth={true}
+                            duration={500}
                         >
                             Home
-                        </Link>
-                        <Link
-                            to="/about"
+                        </ScrollLink>
+
+                        <ScrollLink
+                            to="about"
                             onClick={() => setOpen(false)}
-                            className="text-lg font-semibold hover:text-primary transition-colors"
+                            className="text-lg font-medium hover:text-primary transition-colors"
+                            smooth={true}
+                            duration={500}
                         >
                             About Us
-                        </Link>
+                        </ScrollLink>
 
                         <Accordion type="single" collapsible className="w-full">
                             <AccordionItem value="events" className="border-none">
-                                <AccordionTrigger className="py-0 text-lg font-semibold hover:no-underline">
+                                <AccordionTrigger className="py-0 text-lg font-medium hover:no-underline">
                                     Events
                                 </AccordionTrigger>
                                 <AccordionContent className="pt-4 pb-0 flex flex-col gap-4 ml-4 border-l-2 border-muted pl-4">
-                                    <Link
-                                        to="#"
+                                    <ScrollLink
+                                        to="first"
                                         onClick={() => setOpen(false)}
-                                        className="flex gap-3 items-center group"
+                                        className="text-lg font-medium hover:text-primary transition-colors cursor-pointer"
+                                        smooth={true}
+                                        duration={500}
                                     >
-                                        <div className="p-2 bg-muted rounded-md group-hover:bg-primary/10 transition-colors">
-                                            <Zap className="size-4 text-primary" />
+                                        <div
+                                            className="flex gap-2"
+                                        >
+                                            <Zap className="size-5 shrink-0" />
+
+                                            <div>
+                                                <div className="font-medium">1st NGSO</div>
+                                                <div className="text-muted-foreground">
+                                                    National Legacy Event
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <div className="font-medium">1st NGSO</div>
-                                            <div className="text-xs text-muted-foreground">National Legacy Event</div>
-                                        </div>
-                                    </Link>
-                                    <Link
-                                        to="#"
+                                    </ScrollLink>
+
+                                    <ScrollLink
+                                        to="second"
                                         onClick={() => setOpen(false)}
-                                        className="flex gap-3 items-center group"
+                                        className="text-lg font-medium hover:text-primary transition-colors cursor-pointer"
+                                        smooth={true}
+                                        duration={500}
                                     >
-                                        <div className="p-2 bg-muted rounded-md group-hover:bg-primary/10 transition-colors">
-                                            <Microscope className="size-4 text-primary" />
+                                        <div
+                                            className="flex gap-2"
+                                        >
+                                            <Microscope className="size-5 shrink-0" />
+
+                                            <div>
+                                                <div className="font-medium">2nd IGSO</div>
+                                                <div className="text-muted-foreground">
+                                                    International Championship
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <div className="font-medium">2nd IGSO</div>
-                                            <div className="text-xs text-muted-foreground">International Championship</div>
-                                        </div>
-                                    </Link>
+                                    </ScrollLink>
+
                                 </AccordionContent>
                             </AccordionItem>
                         </Accordion>
 
-                        <Link
-                            to="/media"
+
+                        <ScrollLink
+                            to="partners"
                             onClick={() => setOpen(false)}
-                            className="text-lg font-semibold hover:text-primary transition-colors"
+                            className="text-lg font-medium hover:text-primary transition-colors"
+                            smooth={true}
+                            duration={500}
                         >
-                            Media & Partners
-                        </Link>
+                            Partners
+                        </ScrollLink>
+
+                        <ScrollLink
+                            to="gallery"
+                            onClick={() => setOpen(false)}
+                            className="text-lg font-medium hover:text-primary transition-colors"
+                            smooth={true}
+                            duration={500}
+                        >
+                            Gallery
+                        </ScrollLink>
                     </div>
                 </SheetContent>
             </Sheet>
@@ -107,13 +138,29 @@ export function Navigation() {
 
                     <NavigationMenuItem>
                         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                            <Link to="/docs">Home</Link>
+                            <ScrollLink
+                                to="home"
+                                onClick={() => setOpen(false)}
+                                className="text-lg font-medium hover:text-primary transition-colors cursor-pointer"
+                                smooth={true}
+                                duration={500}
+                            >
+                                Home
+                            </ScrollLink>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
 
                     <NavigationMenuItem>
                         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                            <Link to="/docs">About Us</Link>
+                            <ScrollLink
+                                to="about"
+                                onClick={() => setOpen(false)}
+                                className="text-lg font-medium hover:text-primary transition-colors cursor-pointer"
+                                smooth={true}
+                                duration={500}
+                            >
+                                About Us
+                            </ScrollLink>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
 
@@ -124,8 +171,13 @@ export function Navigation() {
                             <ul className="grid w-[300px] gap-4">
                                 <li>
                                     <NavigationMenuLink asChild>
-                                        <Link
-                                            to="#"
+
+                                        <ScrollLink
+                                            to="first"
+                                            onClick={() => setOpen(false)}
+                                            className="text-lg font-medium hover:text-primary transition-colors cursor-pointer"
+                                            smooth={true}
+                                            duration={500}
                                         >
                                             <div
                                                 className="flex gap-2"
@@ -139,12 +191,17 @@ export function Navigation() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </Link>
+                                        </ScrollLink>
+
 
                                     </NavigationMenuLink>
                                     <NavigationMenuLink asChild>
-                                        <Link
-                                            to="#"
+                                        <ScrollLink
+                                            to="second"
+                                            onClick={() => setOpen(false)}
+                                            className="text-lg font-medium hover:text-primary transition-colors cursor-pointer"
+                                            smooth={true}
+                                            duration={500}
                                         >
                                             <div
                                                 className="flex gap-2"
@@ -158,7 +215,8 @@ export function Navigation() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </Link>
+                                        </ScrollLink>
+
                                     </NavigationMenuLink>
                                 </li>
                             </ul>
@@ -168,7 +226,30 @@ export function Navigation() {
 
                     <NavigationMenuItem>
                         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                            <Link to="/docs">Media & Partners</Link>
+                            <ScrollLink
+                                to="partners"
+                                onClick={() => setOpen(false)}
+                                className="text-lg font-medium hover:text-primary transition-colors cursor-pointer"
+                                smooth={true}
+                                duration={500}
+                            >
+                                Partners
+                            </ScrollLink>
+                        </NavigationMenuLink>
+                    </NavigationMenuItem>
+
+
+                    <NavigationMenuItem>
+                        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                            <ScrollLink
+                                to="gallery"
+                                onClick={() => setOpen(false)}
+                                className="text-lg font-medium hover:text-primary transition-colors cursor-pointer"
+                                smooth={true}
+                                duration={500}
+                            >
+                                Gellary
+                            </ScrollLink>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
 

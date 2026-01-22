@@ -1,7 +1,7 @@
 import { useGesture } from '@use-gesture/react';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 
-type ImageItem = string | { src: string; alt?: string };
+export type ImageItem = string | { src: string; alt?: string };
 
 type DomeGalleryProps = {
   images?: ImageItem[];
