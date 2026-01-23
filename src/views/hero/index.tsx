@@ -46,9 +46,12 @@ const Hero = () => {
                         {/* Text Content */}
                         <div className="text-left lg:text-left fade-up">
 
-                            <Badge variant={"outline"} className="text-white">
-                                Registration Open for 2025
-                            </Badge>
+                            <div className="flex">
+                                <Badge variant={"outline"} className="text-white ">
+                                    Registration Open for 2025
+                                </Badge>
+                            </div>
+
 
                             <div className="flex flex-col items-start w-fit">
                                 <img
@@ -64,7 +67,7 @@ const Hero = () => {
                                 />
                             </div>
 
-                            <p className="text-lg md:text-xl mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light text-white text-center md:text-start">
+                            <p className="text-md md:text-xl mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light text-white text-center">
                                 Join the world's most prestigious science competition for young innovators.
                                 Certified by global educational bodies.
                             </p>
