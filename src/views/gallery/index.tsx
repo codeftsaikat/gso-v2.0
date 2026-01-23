@@ -23,7 +23,7 @@ export default function Gallery() {
 
 
     return (
-        <section className="py-20 bg-background" id="gallery">
+        <section className="py-20 bg-background bg-linear-to-r from-slate-100 to-slate-50" id="gallery">
             <SectionHeader
                 heading="Our Activities"
                 title="Our Activity Gallery"

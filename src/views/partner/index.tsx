@@ -46,7 +46,7 @@ const partners = [
 
 export default function PartnersSection() {
     return (
-        <section className="py-20 bg-linear-to-r from-zinc-100 to-gray-100" id="partners">
+        <section className="py-20" id="partners">
             <SectionHeader
                 heading="Partners & Sponsors"
                 title="Trusted By Leading Organizations"
