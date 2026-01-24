@@ -6,19 +6,15 @@
   font-style: italic;
 }
 
-.irvin-header {
-  font-family: 'Limelight', cursive;
-  font-size: 2rem;
-  text-transform: uppercase;
-  color: #121212;
-  -webkit-font-smoothing: antialiased;
-}
-
 .irvin {
   font-family: 'Limelight', cursive;
   font-size: 18px;
   color: #121212;
   -webkit-font-smoothing: antialiased;
+}
+
+.irvin-header {
+  font-family: "Zalando Sans", sans-serif;
 }
 
 @custom-variant dark (&:is(.dark *));
