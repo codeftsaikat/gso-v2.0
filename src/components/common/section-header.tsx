@@ -1,4 +1,3 @@
-import BlurText from "../BlurText"
 
 type Props = {
     heading: string
@@ -16,13 +15,11 @@ const SectionHeader = (props: Props) => {
             </div>
 
             <div className="px-2 w-full font-semibold irvin-header  mx-auto flex! items-center! justify-center! text-center!">
-                <BlurText
-                    text={props.title}
-                    delay={200}
-                    animateBy="words"
-                    direction="top"
+                <p
                     className="text-3xl md:text-4xl mb-8 text-center!"
-                />
+                >
+                    {props.title}
+                </p>
 
             </div>
 

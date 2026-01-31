@@ -1,4 +1,3 @@
-import BlurText from "@/components/BlurText";
 import CountUp from "@/components/CountUp";
 import SpotlightCard from "@/components/SpotlightCard";
 
@@ -19,13 +18,11 @@ const MissionVisionImpact = () => {
                         </div>
                     </div>
                     <h2 className="font-bold irvin-header text-center mx-auto flex items-center justify-center">
-                        <BlurText
-                            text="Shaping Future Thinkers & Changemakers"
-                            delay={200}
-                            animateBy="words"
-                            direction="top"
-                            className="text-3xl sm:text-4xl mb-8"
-                        />
+                        <p className="text-3xl sm:text-4xl mb-8"
+                        >
+                            Shaping Future Thinkers & Changemakers
+
+                        </p>
 
                     </h2>
 
@@ -49,7 +46,7 @@ const MissionVisionImpact = () => {
                             </div>
 
 
-                            <p className="text-lg text-gray-700 leading-relaxed body-italic">
+                            <p className="text-lg text-gray-700 leading-relaxed">
                                 "Empowering young minds to think logically, create fearlessly and build a truth-driven world."
                             </p>
                         </div>
@@ -68,7 +65,7 @@ const MissionVisionImpact = () => {
                                 <h3 className="text-2xl font-bold text-gray-900">Our Mission</h3>
                             </div>
 
-                            <p className="text-lg text-gray-700 leading-relaxed italic">
+                            <p className="text-lg text-gray-700 leading-relaxed">
                                 "Creating a learning ecosystem where Wisdom becomes Power, logic becomes strength and every learner becomes Changemaker."
                             </p>
                         </div>
@@ -80,14 +77,12 @@ const MissionVisionImpact = () => {
                 <div className="mb-16 md:mb-24">
                     <div className="text-center mb-6">
 
-                        <h2 className="font-bold irvin text-3xl! text-center mx-auto flex items-center justify-center">
-                            <BlurText
-                                text="Impacts Made"
-                                delay={200}
-                                animateBy="words"
-                                direction="top"
-                                className="text-3xl mb-2"
-                            />
+                        <h2 className="font-bold text-3xl! text-center mx-auto flex items-center justify-center">
+
+                            <p className="text-3xl mb-2"
+                            >
+                                Impacts Made
+                            </p>
 
                         </h2>
                         <p className="text-foreground max-w-2xl mx-auto">
@@ -114,7 +109,7 @@ const MissionVisionImpact = () => {
                                     to={stat.value}
                                     separator=","
                                     direction="up"
-                                    duration={1}
+                                    duration={2}
                                     className="count-up-text text-2xl md:text-3xl font-bold mb-2"
                                 />
                                 {/* <div className="text-2xl md:text-3xl font-bold text-primary mb-2 group-hover:scale-105 transition-transform duration-300">

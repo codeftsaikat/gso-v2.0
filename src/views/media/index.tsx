@@ -40,10 +40,8 @@ const MediaCoverageSection = () => {
 
                 <Carousel
                     plugins={[autoplay.current]}
-                    opts={{
-                        align: "start",
-                    }}
-                    className="w-full"
+                    opts={{ align: "start" }}
+                    className="w-full relative group" // Added relative and group for hover effects
                 >
                     <CarouselContent className="-ml-4">
                         {mediaCoverage.map((media) => (
@@ -55,8 +53,17 @@ const MediaCoverageSection = () => {
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+
+                    {/* Control Container */}
+                    <div className="flex gap-2 mt-3 items-center justify-center sm:block">
+
+                        <CarouselPrevious
+                            className="static sm:absolute mt-4 sm:mt-0 translate-y-0 sm:-left-12"
+                        />
+                        <CarouselNext
+                            className="static sm:absolute mt-4 sm:mt-0 translate-y-0 sm:-right-12"
+                        />
+                    </div>
                 </Carousel>
 
             </div>

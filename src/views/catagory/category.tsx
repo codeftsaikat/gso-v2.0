@@ -91,7 +91,7 @@ export default function ExpandableCardDemo() {
             >
               <div className="flex">
                 <motion.div layoutId={`${active.name}-${id}`}>
-                  <div className={`inline-flex p-5 rounded-xl bg-gradient-to-br ${active.color} m-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`p-5 hidden sm:block rounded-xl bg-gradient-to-br ${active.color} m-4 group-hover:scale-110 transition-transform duration-300`}>
                     <div className="text-white text-2xl">
                       {active.icon}
                     </div>

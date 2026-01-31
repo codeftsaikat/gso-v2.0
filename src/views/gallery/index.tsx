@@ -29,7 +29,22 @@ export default function Gallery() {
                 title="Our Activity Gallery"
             />
 
-            <div style={{ width: '100vw', height: '100vh' }}>
+            <div className="hidden sm:block" style={{ width: '100vw', height: '100vh' }}>
+                <DomeGallery
+                    fit={1}
+                    minRadius={1000}
+                    maxVerticalRotationDeg={2}
+                    segments={40}
+                    dragDampening={0}
+                    autoRotate={true}
+                    autoRotateDirection="left"
+                    autoRotateSpeed={5}
+                    grayscale={false}
+                    images={partners}
+                />
+            </div>
+
+            <div className="sm:hidden" style={{ width: '100vw', height: '60vh' }}>
                 <DomeGallery
                     fit={1}
                     minRadius={1000}
