@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,13 +25,13 @@ export const useFadeUp = (delay: number = 0) => {
         y: 0,
         duration: 1,
         delay,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
           trigger: element,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse',
+          start: "top 85%",
+          toggleActions: "play none none reverse",
         },
-      }
+      },
     );
 
     return () => {
@@ -45,7 +45,10 @@ export const useFadeUp = (delay: number = 0) => {
 /**
  * Hook for stagger animation on children elements
  */
-export const useStagger = (selector: string = '.stagger-item', delay: number = 0) => {
+export const useStagger = (
+  selector: string = ".stagger-item",
+  delay: number = 0,
+) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -67,13 +70,13 @@ export const useStagger = (selector: string = '.stagger-item', delay: number = 0
         duration: 0.8,
         stagger: 0.1,
         delay,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
           trigger: element,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse',
+          start: "top 85%",
+          toggleActions: "play none none reverse",
         },
-      }
+      },
     );
 
     return () => {
@@ -105,13 +108,13 @@ export const useScaleUp = (delay: number = 0) => {
         scale: 1,
         duration: 0.8,
         delay,
-        ease: 'back.out(1.7)',
+        ease: "back.out(1.7)",
         scrollTrigger: {
           trigger: element,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse',
+          start: "top 85%",
+          toggleActions: "play none none reverse",
         },
-      }
+      },
     );
 
     return () => {
@@ -143,13 +146,13 @@ export const useSlideInLeft = (delay: number = 0) => {
         x: 0,
         duration: 1,
         delay,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
           trigger: element,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse',
+          start: "top 85%",
+          toggleActions: "play none none reverse",
         },
-      }
+      },
     );
 
     return () => {
@@ -181,13 +184,13 @@ export const useSlideInRight = (delay: number = 0) => {
         x: 0,
         duration: 1,
         delay,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
           trigger: element,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse',
+          start: "top 85%",
+          toggleActions: "play none none reverse",
         },
-      }
+      },
     );
 
     return () => {
@@ -208,22 +211,22 @@ export const useTextReveal = (delay: number = 0, chars: boolean = false) => {
     const element = ref.current;
     if (!element) return;
 
-    const text = element.textContent || '';
-    element.textContent = '';
+    const text = element.textContent || "";
+    element.textContent = "";
 
     // Create wrapper
-    const wrapper = document.createElement('div');
-    wrapper.style.display = 'inline-block';
-    wrapper.style.overflow = 'hidden';
+    const wrapper = document.createElement("div");
+    wrapper.style.display = "inline-block";
+    wrapper.style.overflow = "hidden";
 
     if (chars) {
       // Character by character reveal
       [...text].forEach((char, i) => {
-        const span = document.createElement('span');
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        span.style.display = 'inline-block';
-        span.style.opacity = '0';
-        span.style.transform = 'translateY(100%)';
+        const span = document.createElement("span");
+        span.textContent = char === " " ? "\u00A0" : char;
+        span.style.display = "inline-block";
+        span.style.opacity = "0";
+        span.style.transform = "translateY(100%)";
         wrapper.appendChild(span);
 
         gsap.to(span, {
@@ -231,18 +234,18 @@ export const useTextReveal = (delay: number = 0, chars: boolean = false) => {
           y: 0,
           duration: 0.5,
           delay: delay + i * 0.03,
-          ease: 'power2.out',
+          ease: "power2.out",
         });
       });
     } else {
       // Word by word reveal
-      const words = text.split(' ');
+      const words = text.split(" ");
       words.forEach((word, i) => {
-        const span = document.createElement('span');
-        span.textContent = word + ' ';
-        span.style.display = 'inline-block';
-        span.style.opacity = '0';
-        span.style.transform = 'translateY(100%)';
+        const span = document.createElement("span");
+        span.textContent = word + " ";
+        span.style.display = "inline-block";
+        span.style.opacity = "0";
+        span.style.transform = "translateY(100%)";
         wrapper.appendChild(span);
 
         gsap.to(span, {
@@ -250,7 +253,7 @@ export const useTextReveal = (delay: number = 0, chars: boolean = false) => {
           y: 0,
           duration: 0.6,
           delay: delay + i * 0.1,
-          ease: 'power2.out',
+          ease: "power2.out",
         });
       });
     }
@@ -277,11 +280,11 @@ export const useParallax = (speed: number = 0.5) => {
 
     gsap.to(element, {
       yPercent: -50 * speed,
-      ease: 'none',
+      ease: "none",
       scrollTrigger: {
         trigger: element,
-        start: 'top bottom',
-        end: 'bottom top',
+        start: "top bottom",
+        end: "bottom top",
         scrub: true,
       },
     });
@@ -297,9 +300,12 @@ export const useParallax = (speed: number = 0.5) => {
 /**
  * Hook for counter animation
  */
-export const useCounter = (end: number, duration: number = 2, delay: number = 0) => {
+export const useCounter = (
+  end: number,
+  duration: number = 2,
+  delay: number = 0,
+) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const counterRef = useRef<{ update: (value: number) => void } | null>(null);
 
   useEffect(() => {
     const element = ref.current;
@@ -311,11 +317,11 @@ export const useCounter = (end: number, duration: number = 2, delay: number = 0)
       value: end,
       duration,
       delay,
-      ease: 'power2.out',
+      ease: "power2.out",
       scrollTrigger: {
         trigger: element,
-        start: 'top 85%',
-        toggleActions: 'play none none reverse',
+        start: "top 85%",
+        toggleActions: "play none none reverse",
       },
       onUpdate: () => {
         element.textContent = Math.round(obj.value).toLocaleString();
@@ -346,7 +352,7 @@ export const useHorizontalScroll = () => {
 
     gsap.to(sections, {
       x: () => -(scrollWidth - window.innerWidth),
-      ease: 'none',
+      ease: "none",
       scrollTrigger: {
         trigger: container,
         pin: true,
