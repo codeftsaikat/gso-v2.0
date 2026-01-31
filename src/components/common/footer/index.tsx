@@ -18,15 +18,15 @@ const Footer = () => {
                             Empowering the next generation of scientific minds through rigorous competition and global connectivity.
                         </p>
                         <div className="flex gap-4">
-                            <a href="#" className="w-10 h-10 rounded-lg bg-white/5 backdrop-blur-sm flex items-center justify-center hover:bg-gradient-to-r hover:from-primary/40 hover:to-primary hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+                            <a href="https://www.facebook.com/generalscienceolympiad" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-white/5 backdrop-blur-sm flex items-center justify-center hover:bg-gradient-to-r hover:text-white transition-all duration-300 transform hover:-translate-y-1">
                                 <Facebook />
                             </a>
 
-                            <a href="#" className="w-10 h-10 rounded-lg bg-white/5 backdrop-blur-sm flex items-center justify-center hover:bg-gradient-to-r hover:from-primary/40 hover:to-primary hover:text-white transition-all duration-300 transform hover:-translate-y-1">
-                                < Linkedin />
+                            <a href="https://www.linkedin.com/company/general-science-olympiad/people/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-white/5 backdrop-blur-sm flex items-center justify-center hover:bg-gradient-to-rhover:text-white transition-all duration-300 transform hover:-translate-y-1">
+                                <Linkedin />
                             </a>
 
-                            <a href="#" className="w-10 h-10 rounded-lg bg-white/5 backdrop-blur-sm flex items-center justify-center hover:bg-gradient-to-r hover:from-primary/40 hover:to-primary hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+                            <a href="https://www.youtube.com/@ScienceBazeofficial" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-white/5 backdrop-blur-sm flex items-center justify-center hover:bg-gradient-to-r  hover:text-white transition-all duration-300 transform hover:-translate-y-1">
                                 <Youtube />
                             </a>
                         </div>
