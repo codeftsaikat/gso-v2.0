@@ -38,25 +38,16 @@ const Footer = () => {
                         </h4>
                         <ul className="space-y-3">
                             <li>
-                                <a href="#" className="hover:text-primary transition-colors duration-300 flex items-center gap-2 group">
+                                <a href="https://sciencebaze.com/direct-reg/second-igso" className=" transition-colors duration-300 flex items-center gap-2 group">
                                     Registration Guide
                                 </a>
                             </li>
                             <li>
-                                <a href="#mission" className="hover:text-primary transition-colors duration-300 flex items-center gap-2 group">
+                                <a href="#about" className=" transition-colors duration-300 flex items-center gap-2 group">
                                     About Us
                                 </a>
                             </li>
-                            <li>
-                                <a href="#events" className="hover:text-primary transition-colors duration-300 flex items-center gap-2 group">
-                                    Events Calendar
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-primary transition-colors duration-300 flex items-center gap-2 group">
-                                    Verify Certificate
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
 
@@ -65,25 +56,16 @@ const Footer = () => {
                             Legal & Contact
                         </h4>
                         <ul className="space-y-3">
-                            <li>
-                                <a href="#" className="hover:text-primary transition-colors duration-300 flex items-center gap-2 group">
 
-                                    Privacy Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-primary transition-colors duration-300 flex items-center gap-2 group">
 
-                                    Terms of Service
-                                </a>
-                            </li>
-                            <li className="flex items-center gap-3 text-slate-300 hover:text-primary transition-colors duration-300">
-
-                                info@sciencebaze.com
-                            </li>
-                            <li className="flex items-center gap-3 text-slate-300 hover:text-primary transition-colors duration-300">
+                            <li className="flex items-center gap-3 text-slate-300  transition-colors duration-300">
 
                                 Dhaka, Bangladesh
+                            </li>
+
+                            <li className="flex items-center gap-3 text-slate-300  transition-colors duration-300">
+
+                                info@sciencebaze.com
                             </li>
                         </ul>
                     </div>
@@ -93,10 +75,7 @@ const Footer = () => {
                     <div className="text-slate-300">
                         &copy; 2025 General Science Olympiad. All rights reserved.
                     </div>
-                    <div className="flex items-center gap-3 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500/10 via-cyan-500/5 to-transparent backdrop-blur-sm border border-slate-700/50">
-                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 animate-pulse"></div>
-                        <span className="text-xs font-medium">Secure 256-bit SSL Encryption</span>
-                    </div>
+
                 </div>
             </div>
         </footer>

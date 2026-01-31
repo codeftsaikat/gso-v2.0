@@ -87,11 +87,11 @@ export default function ExpandableCardDemo() {
             <motion.div
               layoutId={`card-${active.name}-${id}`}
               ref={ref}
-              className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%]  flex  bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
+              className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%]  flex  bg-white dark:bg-neutral-900 sm:rounded-2xl overflow-hidden"
             >
               <div className="flex">
                 <motion.div layoutId={`${active.name}-${id}`}>
-                  <div className={`inline-flex p-8 rounded-xl bg-gradient-to-br ${active.color} m-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`inline-flex p-5 rounded-xl bg-gradient-to-br ${active.color} m-4 group-hover:scale-110 transition-transform duration-300`}>
                     <div className="text-white text-2xl">
                       {active.icon}
                     </div>
@@ -135,44 +135,46 @@ export default function ExpandableCardDemo() {
       </AnimatePresence>
 
       {/* Grid of category cards - 3 per row on large screens */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {visibleCategories.map((card) => (
-          <motion.div
-            layoutId={`card-${card.name}-${id}`}
-            key={`card-${card.name}-${id}`}
-            onClick={() => setActive(card)}
-            className="cursor-pointer"
-          >
-            <Card className="group shadow-lg border border-gray-300 transition-all duration-300">
-              <CardContent className="p-6 flex gap-4">
-                <div
-                  className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${card.color} mb-4 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <div className="text-white text-2xl">
-                    {card.icon}
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">
-                    {card.name}
-                  </h3>
-
-                  <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <Users className="h-4 w-4" />
-                      <span>{card.classRange}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
-                      <span>{card.ageRange}</span>
+      <div className="flex justify-center items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {visibleCategories.map((card) => (
+            <motion.div
+              layoutId={`card-${card.name}-${id}`}
+              key={`card-${card.name}-${id}`}
+              onClick={() => setActive(card)}
+              className="cursor-pointer"
+            >
+              <Card className="group shadow-lg border border-gray-300 transition-all duration-300 bg-white">
+                <CardContent className="px-6 py-0 flex gap-4">
+                  <div
+                    className={`inline-flex p-2 rounded-xl bg-gradient-to-br ${card.color} mb-4 group-hover:scale-110 transition-transform duration-300`}
+                  >
+                    <div className="text-white">
+                      {card.icon}
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
+
+                  <div className="space-y-1">
+                    <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">
+                      {card.name}
+                    </h3>
+
+                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Users className="h-4 w-4" />
+                        <span>{card.classRange}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4" />
+                        <span>{card.ageRange}</span>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       {categories.length > 3 && (

@@ -29,7 +29,7 @@ const EventTabs = ({ activeTab, onTabChange, eventCategories }: EventTabsProps) 
                     }
 
                     return (
-                        <TabsTrigger key={category.id} value={category.id} className="flex items-center gap-2 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-white">
+                        <TabsTrigger key={category.id} value={category.id} className="flex items-center cursor-pointer gap-2 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-white">
                             <Icon className="h-4 w-4" />
                             <span>{category.name.split(' ')[0]}</span>
                         </TabsTrigger>

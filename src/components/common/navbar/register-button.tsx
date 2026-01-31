@@ -26,7 +26,7 @@ const RegisterButton = () => {
       "
                 >
 
-                    <span className="relative z-10 irvin">
+                    <span className="relative z-10 text-lg font-light">
                         Register Now
                     </span>
                 </Button>

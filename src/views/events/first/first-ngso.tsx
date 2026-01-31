@@ -24,7 +24,7 @@ const MissionVisionImpact = () => {
                             delay={200}
                             animateBy="words"
                             direction="top"
-                            className="text-3xl mb-8"
+                            className="text-3xl sm:text-4xl mb-8"
                         />
 
                     </h2>

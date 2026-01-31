@@ -1,7 +1,6 @@
 import VideoPlayer from "@/components/common/video-player";
 import ElectricBorder from "@/components/ElectricBorder";
 import LightRays from "@/components/LightRays";
-import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
@@ -46,11 +45,11 @@ const Hero = () => {
                         {/* Text Content */}
                         <div className="text-left lg:text-left fade-up">
 
-                            <div className="flex">
+                            {/* <div className="flex">
                                 <Badge variant={"outline"} className="text-white ">
                                     Registration Open for 2025
                                 </Badge>
-                            </div>
+                            </div> */}
 
 
                             <div className="flex flex-col items-start w-fit">
@@ -80,7 +79,7 @@ const Hero = () => {
                                         speed={4}
                                         chaos={0.01}
                                         style={{ borderRadius: 16 }}
-                                        className="text-white px-6 py-4 cursor-pointer hover:scale-110 duration-200"
+                                        className="text-white px-6 py-4 cursor-pointer sm:hover:scale-110 duration-200"
                                     >
                                         Register Now - 100 BDT
 
